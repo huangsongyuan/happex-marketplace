@@ -1,0 +1,21 @@
+{
+  "name": "happy-codex-marketplace",
+  "owner": {
+    "name": "Multica",
+    "url": "https://github.com/multica-ai"
+  },
+  "plugins": [
+    {
+      "name": "andrej-karpathy-skills",
+      "source": "./andrej-karpathy-skills",
+      "version": "1.0.0",
+      "description": "Behavioral guidelines inspired by Andrej Karpathy to reduce common LLM coding mistakes",
+      "author": {
+        "name": "Multica",
+        "url": "https://github.com/multica-ai"
+      },
+      "category": "workflow",
+      "tags": ["guidelines", "best-practices", "coding-standards", "llm"]
+    }
+  ]
+}

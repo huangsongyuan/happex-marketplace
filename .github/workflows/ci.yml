@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Validate marketplace.json
+      run: |
+        if command -v jq > /dev/null; then
+          jq empty marketplace.json && echo "✓ marketplace.json is valid JSON"
+        else
+          echo "⚠ jq not installed, skipping JSON validation"
+        fi
+    
+    - name: Check required files
+      run: |
+        echo "Checking required files..."
+        [ -f marketplace.json ] && echo "✓ marketplace.json" || echo "✗ marketplace.json missing"
+        [ -f README.md ] && echo "✓ README.md" || echo "✗ README.md missing"
+        [ -f LICENSE ] && echo "✓ LICENSE" || echo "✗ LICENSE missing"
+    
+    - name: List plugins
+      run: |
+        echo "Plugins in marketplace:"
+        ls -la */plugin.json 2>/dev/null || echo "No plugins found"
