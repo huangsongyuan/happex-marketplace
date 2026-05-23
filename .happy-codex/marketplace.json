@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "A collection of happy-codex plugins for better coding practices and improved LLM interactions",
   "type": "marketplace",
-  "author": {
+  "owner": {
     "name": "Happy-Codex",
     "url": "https://github.com/happy-codex"
   },
@@ -15,6 +15,7 @@
   "plugins": [
     {
       "name": "andrej-karpathy-skills",
+      "source": "./andrej-karpathy-skills",
       "version": "1.0.0",
       "description": "Behavioral guidelines inspired by Andrej Karpathy to reduce common LLM coding mistakes",
       "author": {
@@ -24,24 +25,7 @@
       "repository": "https://github.com/happy-codex/andrej-karpathy-skills",
       "license": "MIT",
       "keywords": ["guidelines", "best-practices", "coding-standards"],
-      "path": "./andrej-karpathy-skills",
-      "readme": "./andrej-karpathy-skills/README.md",
-      "skills": [
-        {
-          "name": "karpathy-guidelines",
-          "path": "./andrej-karpathy-skills/skills/karpathy-guidelines/SKILL.md",
-          "description": "Behavioral guidelines inspired by Andrej Karpathy"
-        }
-      ],
-      "commands": [],
-      "agents": [],
-      "hooks": []
+      "category": "workflow"
     }
-  ],
-  "metadata": {
-    "created": "2025-01-01",
-    "updated": "2025-01-01",
-    "total-plugins": 1,
-    "total-skills": 1
-  }
+  ]
 }

@@ -4,23 +4,23 @@ A marketplace for happy-codex plugins, distributing reusable coding skills, comm
 
 ## Available Plugins
 
-| Plugin | Version | Description |
-|--------|---------|-------------|
-| **andrej-karpathy-skills** | 1.0.0 | Behavioral guidelines inspired by Andrej Karpathy |
+| Plugin | Version | Category | Description |
+|--------|---------|----------|-------------|
+| **andrej-karpathy-skills** | 1.0.0 | workflow | Behavioral guidelines inspired by Andrej Karpathy |
 
 ## Quick Start
+
+### Register as Local Marketplace
+
+```bash
+happy-codex marketplace add ./ --name happy-codex-marketplace
+```
 
 ### Install a Plugin
 
 ```bash
-happy-codex plugin install <plugin-name>
+happy-codex plugin install andrej-karpathy-skills
 ```
-
-### Browse Plugins
-
-1. Clone this repository
-2. Review plugin configurations in `marketplace.json`
-3. Copy plugins to your `~/.happy-codex/plugins/` directory
 
 ## Directory Structure
 
@@ -30,37 +30,58 @@ happy-codex plugin install <plugin-name>
 │   └── marketplace.json       # Marketplace manifest
 ├── LICENSE                    # MIT License
 ├── README.md                  # This file
-└── andrej-karpathy-skills/    # Plugin
-    ├── plugin.json           # Plugin manifest
-    ├── README.md             # Plugin docs
-    └── skills/
+└── andrej-karpathy-skills/    # Plugin directory
+    ├── plugin.json           # Plugin manifest (required)
+    ├── HAPPY.md             # Plugin instructions (auto-injected)
+    ├── README.md             # Plugin documentation
+    └── skills/              # Skill definitions
         └── karpathy-guidelines/
-            └── SKILL.md      # Skill definition
+            └── SKILL.md     # Skill manifest + prompt
 ```
 
-## Add New Plugin
+## Marketplace Manifest (marketplace.json)
 
-1. Create a plugin directory with `plugin.json`
-2. Add skills, commands, agents, or hooks
-3. Update `marketplace.json`
-4. Submit a PR
+```json
+{
+  "name": "my-marketplace",
+  "owner": { "name": "Author Name", "url": "https://github.com/author" },
+  "plugins": [
+    {
+      "name": "my-plugin",
+      "source": "./my-plugin",
+      "version": "1.0.0",
+      "description": "What this plugin does",
+      "author": { "name": "Author" },
+      "category": "workflow"
+    }
+  ]
+}
+```
 
-## Plugin Manifest
+## Plugin Manifest (plugin.json)
 
 ```json
 {
   "name": "my-plugin",
   "version": "1.0.0",
-  "description": "Description",
+  "description": "Plugin description",
   "author": { "name": "Author", "url": "https://github.com/author" },
   "license": "MIT",
   "keywords": ["tag1", "tag2"],
   "skills": ["./skills/my-skill"],
   "commands": [],
   "agents": [],
-  "hooks": []
+  "hooks": {}
 }
 ```
+
+## Add New Plugin
+
+1. Create a plugin directory with `plugin.json`
+2. Add `HAPPY.md` for plugin-level instructions
+3. Add `skills/`, `commands/`, `agents/`, or `hooks/` directories
+4. Update `marketplace.json` with the plugin entry
+5. Submit a PR
 
 ## License
 
