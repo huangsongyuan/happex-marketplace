@@ -1,0 +1,18 @@
+{
+  "name": "andrej-karpathy-skills",
+  "version": "1.0.0",
+  "description": "Behavioral guidelines inspired by Andrej Karpathy to reduce common LLM coding mistakes",
+  "author": {
+    "name": "Multica",
+    "url": "https://github.com/multica-ai"
+  },
+  "repository": "https://github.com/happy-codex/andrej-karpathy-skills",
+  "license": "MIT",
+  "keywords": ["guidelines", "best-practices", "coding-standards", "llm", "karpathy"],
+  "skills": [
+    "./skills/karpathy-guidelines"
+  ],
+  "commands": [],
+  "agents": [],
+  "hooks": {}
+}
