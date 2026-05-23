@@ -1,0 +1,15 @@
+{
+  "name": "happy-codex-marketplace",
+  "version": "1.0.0",
+  "description": "Official happy-codex plugin marketplace",
+  "repository": "https://github.com/happy-codex/marketplace",
+  "license": "MIT",
+  "keywords": ["marketplace", "plugins", "happy-codex"],
+  "plugins": [
+    {
+      "name": "andrej-karpathy-skills",
+      "path": "./andrej-karpathy-skills",
+      "version": "1.0.0"
+    }
+  ]
+}
