@@ -1,15 +1,47 @@
 {
+  "$schema": "https://happy-codex.pages.dev/schemas/marketplace.json",
   "name": "happy-codex-marketplace",
   "version": "1.0.0",
-  "description": "Official happy-codex plugin marketplace",
-  "repository": "https://github.com/happy-codex/marketplace",
+  "description": "A collection of happy-codex plugins for better coding practices and improved LLM interactions",
+  "type": "marketplace",
+  "author": {
+    "name": "Happy-Codex",
+    "url": "https://github.com/happy-codex"
+  },
+  "homepage": "https://github.com/happy-codex/happy-codex-marketplace",
   "license": "MIT",
-  "keywords": ["marketplace", "plugins", "happy-codex"],
+  "repository": "https://github.com/happy-codex/happy-codex-marketplace",
+  "keywords": ["marketplace", "plugins", "coding-guidelines", "productivity"],
   "plugins": [
     {
       "name": "andrej-karpathy-skills",
+      "version": "1.0.0",
+      "description": "Behavioral guidelines inspired by Andrej Karpathy to reduce common LLM coding mistakes",
+      "author": {
+        "name": "Multica",
+        "url": "https://github.com/multica-ai"
+      },
+      "repository": "https://github.com/happy-codex/andrej-karpathy-skills",
+      "license": "MIT",
+      "keywords": ["guidelines", "best-practices", "coding-standards"],
       "path": "./andrej-karpathy-skills",
-      "version": "1.0.0"
+      "readme": "./andrej-karpathy-skills/README.md",
+      "skills": [
+        {
+          "name": "karpathy-guidelines",
+          "path": "./andrej-karpathy-skills/skills/karpathy-guidelines/SKILL.md",
+          "description": "Behavioral guidelines inspired by Andrej Karpathy"
+        }
+      ],
+      "commands": [],
+      "agents": [],
+      "hooks": []
     }
-  ]
+  ],
+  "metadata": {
+    "created": "2025-01-01",
+    "updated": "2025-01-01",
+    "total-plugins": 1,
+    "total-skills": 1
+  }
 }
