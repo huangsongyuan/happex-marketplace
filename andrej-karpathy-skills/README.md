@@ -24,7 +24,7 @@ The skill automatically activates when writing, reviewing, or refactoring code.
 ## Installation
 
 ```bash
-happy-codex plugin install andrej-karpathy-skills
+happex plugin install andrej-karpathy-skills
 ```
 
 ## License

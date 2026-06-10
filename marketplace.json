@@ -1,8 +1,8 @@
 {
-  "name": "happy-codex-marketplace",
+  "name": "happex-marketplace",
   "owner": {
-    "name": "Multica",
-    "url": "https://github.com/multica-ai"
+    "name": "huangsongyuan",
+    "url": "https://github.com/huangsongyuan"
   },
   "plugins": [
     {
@@ -11,8 +11,8 @@
       "version": "1.0.0",
       "description": "Behavioral guidelines inspired by Andrej Karpathy to reduce common LLM coding mistakes",
       "author": {
-        "name": "Multica",
-        "url": "https://github.com/multica-ai"
+        "name": "huangsongyuan",
+        "url": "https://github.com/huangsongyuan"
       },
       "category": "workflow",
       "tags": ["guidelines", "best-practices", "coding-standards", "llm"]

@@ -1,6 +1,6 @@
-# Happy-Codex Marketplace
+# Happex Marketplace
 
-A marketplace for happy-codex plugins, distributing reusable coding skills, commands, agents, and hooks.
+A marketplace for happex plugins, distributing reusable coding skills, commands, agents, and hooks.
 
 ## Available Plugins
 
@@ -12,9 +12,9 @@ A marketplace for happy-codex plugins, distributing reusable coding skills, comm
 
 ### andrej-karpathy-skills
 
-**Source:** [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills)
+**Source:** [huangsongyuan/andrej-karpathy-skills](https://github.com/huangsongyuan/happex-marketplace/tree/main/andrej-karpathy-skills)
 
-This plugin contains behavioral guidelines inspired by Andrej Karpathy to reduce common LLM coding mistakes. It is developed and maintained by [Multica](https://github.com/multica-ai).
+This plugin contains behavioral guidelines inspired by Andrej Karpathy to reduce common LLM coding mistakes. It is developed and maintained by [huangsongyuan](https://github.com/huangsongyuan).
 
 **Features:**
 - `karpathy-guidelines` skill - LLM coding best practices
@@ -27,13 +27,13 @@ This plugin contains behavioral guidelines inspired by Andrej Karpathy to reduce
 ### Register as Local Marketplace
 
 ```bash
-happy-codex marketplace add ./ --name happy-codex-marketplace
+happex marketplace add ./ --name happex-marketplace
 ```
 
 ### Install a Plugin
 
 ```bash
-happy-codex plugin install andrej-karpathy-skills
+happex plugin install andrej-karpathy-skills
 ```
 
 ## Directory Structure
