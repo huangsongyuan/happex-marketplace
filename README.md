@@ -40,13 +40,11 @@ happex plugin install andrej-karpathy-skills
 
 ```
 ./
-├── .happy-codex/
-│   └── marketplace.json       # Marketplace manifest
 ├── LICENSE                    # MIT License
 ├── README.md                  # This file
 └── andrej-karpathy-skills/    # Plugin directory
     ├── plugin.json           # Plugin manifest (required)
-    ├── HAPPY.md             # Plugin instructions (auto-injected)
+    ├── HAPPEX.md             # Plugin instructions (auto-injected)
     ├── README.md             # Plugin documentation
     └── skills/              # Skill definitions
         └── karpathy-guidelines/
@@ -92,7 +90,7 @@ happex plugin install andrej-karpathy-skills
 ## Add New Plugin
 
 1. Create a plugin directory with `plugin.json`
-2. Add `HAPPY.md` for plugin-level instructions
+2. Add `HAPPEX.md` for plugin-level instructions
 3. Add `skills/`, `commands/`, `agents/`, or `hooks/` directories
 4. Update `marketplace.json` with the plugin entry
 5. Submit a PR

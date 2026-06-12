@@ -12,7 +12,6 @@ when-to-use: When writing, reviewing, or refactoring code to avoid overcomplicat
 user-invocable: true
 disable-model-invocation: false
 argument-hint: ""
-model: gpt-4o
 ---
 
 # Karpathy-Inspired Guidelines

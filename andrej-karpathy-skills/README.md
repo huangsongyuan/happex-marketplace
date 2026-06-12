@@ -15,11 +15,11 @@ Behavioral guidelines inspired by Andrej Karpathy to reduce common LLM coding mi
 
 The skill automatically activates when writing, reviewing, or refactoring code.
 
-### Manual Invocation
+### Invoke via /skills Menu
 
-```bash
-/karpathy-guidelines
-```
+Type `/skills` in the chat and select `karpathy-guidelines` from the list.
+
+You can also invoke it by describing a coding task — the skill activates automatically based on its triggers.
 
 ## Installation
 

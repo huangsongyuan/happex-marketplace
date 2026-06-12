@@ -1,34 +1,102 @@
-name: CI
+name: Marketplace Validation
 
 on:
   push:
-    branches: [ main ]
+    branches: [main, master]
   pull_request:
-    branches: [ main ]
+    branches: [main, master]
+  workflow_dispatch:
 
 jobs:
   validate:
     runs-on: ubuntu-latest
-    
     steps:
-    - uses: actions/checkout@v4
-    
-    - name: Validate marketplace.json
-      run: |
-        if command -v jq > /dev/null; then
-          jq empty marketplace.json && echo "✓ marketplace.json is valid JSON"
-        else
-          echo "⚠ jq not installed, skipping JSON validation"
-        fi
-    
-    - name: Check required files
-      run: |
-        echo "Checking required files..."
-        [ -f marketplace.json ] && echo "✓ marketplace.json" || echo "✗ marketplace.json missing"
-        [ -f README.md ] && echo "✓ README.md" || echo "✗ README.md missing"
-        [ -f LICENSE ] && echo "✓ LICENSE" || echo "✗ LICENSE missing"
-    
-    - name: List plugins
-      run: |
-        echo "Plugins in marketplace:"
-        ls -la */plugin.json 2>/dev/null || echo "No plugins found"
+      - uses: actions/checkout@v4
+
+      - name: Validate marketplace.json
+        run: |
+          if [ ! -f "marketplace.json" ]; then
+            echo "❌ marketplace.json is missing"
+            exit 1
+          fi
+          jq empty marketplace.json || { echo "❌ marketplace.json is invalid JSON"; exit 1; }
+          echo "✅ marketplace.json is valid"
+
+      - name: Validate plugin.json for each plugin
+        run: |
+          plugins=$(jq -r '.plugins[] | select(.source != null) | .source' marketplace.json)
+          for source in $plugins; do
+            plugin_json="${source}/plugin.json"
+            if [ ! -f "$plugin_json" ]; then
+              echo "❌ $plugin_json is missing"
+              exit 1
+            fi
+            jq empty "$plugin_json" || { echo "❌ $plugin_json is invalid JSON"; exit 1; }
+            echo "✅ $plugin_json is valid"
+          done
+
+      - name: Validate SKILL.md files exist for referenced skills
+        run: |
+          plugins=$(jq -r '.plugins[] | select(.source != null) | .source' marketplace.json)
+          for source in $plugins; do
+            plugin_json="${source}/plugin.json"
+            skills=$(jq -r '.skills[] // empty' "$plugin_json")
+            for skill_path in $skills; do
+              skill_file="${source}/${skill_path}/SKILL.md"
+              if [ ! -f "$skill_file" ]; then
+                echo "❌ $skill_file is missing (referenced in plugin.json skills)"
+                exit 1
+              fi
+              echo "✅ $skill_file exists"
+            done
+          done
+
+      - name: Validate SKILL.md frontmatter
+        run: |
+          plugins=$(jq -r '.plugins[] | select(.source != null) | .source' marketplace.json)
+          for source in $plugins; do
+            plugin_json="${source}/plugin.json"
+            skills=$(jq -r '.skills[] // empty' "$plugin_json")
+            for skill_path in $skills; do
+              skill_file="${source}/${skill_path}/SKILL.md"
+              # Check frontmatter starts and ends with ---
+              first=$(head -1 "$skill_file")
+              if [ "$first" != "---" ]; then
+                echo "❌ $skill_file: frontmatter must start with ---"
+                exit 1
+              fi
+              # Check name field exists
+              if ! grep -q '^name:' "$skill_file"; then
+                echo "❌ $skill_file: frontmatter must contain 'name' field"
+                exit 1
+              fi
+              # Check description field exists
+              if ! grep -q '^description:' "$skill_file"; then
+                echo "❌ $skill_file: frontmatter must contain 'description' field"
+                exit 1
+              fi
+              echo "✅ $skill_file frontmatter is valid"
+            done
+          done
+
+      - name: Validate required files exist
+        run: |
+          for file in "LICENSE" "README.md"; do
+            if [ ! -f "$file" ]; then
+              echo "❌ $file is missing"
+              exit 1
+            fi
+            echo "✅ $file exists"
+          done
+
+      - name: Validate plugin license matches marketplace
+        run: |
+          plugins=$(jq -r '.plugins[] | select(.source != null) | .source' marketplace.json)
+          for source in $plugins; do
+            plugin_license=$(jq -r '.license // "unknown"' "${source}/plugin.json")
+            if [ -z "$plugin_license" ] || [ "$plugin_license" = "null" ]; then
+              echo "⚠️ ${source}/plugin.json has no license field"
+            else
+              echo "✅ ${source}/plugin.json has license: $plugin_license"
+            fi
+          done
